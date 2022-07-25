@@ -1,0 +1,93 @@
+
+{% extends "base.html" %}
+
+{% block body %}
+
+    <nav class="nav-crumbs" id="{{topic}}"> 
+        <ol class="crumbs" id="{{problems}}">
+            <li class="crumb"><a href="/topics">Topics</a></li>
+            <li class="crumb">{{topic}}</li>
+        </ol>
+    </nav>
+
+    <h1 class="topic-heading">{{topic}}</h1>
+
+    <div class="problems" id="problems"></div>
+
+    <script>
+        problem_list = {{problems | tojson | safe}}
+        problems_div = document.getElementById("problems")
+        /*format of problem_list:
+            [problem, unit.section]
+        eg:
+            ["limits", 1.1]*/
+
+        var problem_json = {}
+
+        for (const element of problem_list) {
+            eleint = parseInt(element[1])
+            if (problem_json[eleint] == undefined) {
+                problem_json[eleint] = [element[0]]
+            } else {
+                problem_json[eleint].push([element[0]])
+            }
+        }
+
+        for (const element of Object.keys(problem_json)) {
+            const unit_div = document.createElement('div')
+            unit_div.className = 'grid'
+
+            const unit_header = document.createElement('h2')
+            unit_header.innerText = element + '.0'
+
+            unit_div.appendChild(unit_header)
+
+            const problem_list = document.createElement('ul')
+            problem_list.className='problems-list'
+
+            for (const i of problem_json[element]) {
+                const listElement = document.createElement('li')
+                const link = document.createElement('a')
+                link.innerText=i
+                link.href="/problems/" + "/" + i
+
+                listElement.appendChild(link)
+                problem_list.appendChild(listElement)
+            }
+
+            unit_div.appendChild(problem_list)
+
+            document.getElementById('problems').appendChild(unit_div)
+
+        }
+
+    </script>
+
+    <style>
+        .topic-heading {
+            margin: 20px
+        }
+
+        .problems {
+            margin: 20px;
+            margin-top: 0px;
+            display: flex;
+            flex-flow: wrap;
+        }
+
+        .problems-list * {
+            margin-top: 5px;
+        }
+
+        .problems-list{
+            margin-left:20px;
+            margin-top: 5px
+        }
+            
+        .grid {
+            width: 300px;
+            margin-top: 15px;
+        }
+
+    </style>
+{% endblock %}

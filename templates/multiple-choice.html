@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="problem-div" id="problem-div">
+</div>
+
+<style>
+    .problem-div {
+        margin: 20px;
+        padding: 10px;
+    }
+</style>
+
+<script>
+    const problemDiv = document.getElementById('problem-div')
+    problemDiv.innerHTML = `{{question}}`.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+</script>
+
+{% endblock %}
