@@ -5,6 +5,14 @@
 <div class="problem-div" id="problem-div">
 </div>
 
+
+<div id="answers-div">  
+    <ol id="answers-list">
+        
+    </ol>
+</div>
+
+
 <style>
     .problem-div {
         margin: 20px;
@@ -14,7 +22,7 @@
 
 <script>
     const problemDiv = document.getElementById('problem-div')
-    problemDiv.innerHTML = `{{question}}`.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    problemDiv.innerHTML = `{{question | safe}}`
 </script>
 
 {% endblock %}

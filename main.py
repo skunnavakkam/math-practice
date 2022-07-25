@@ -43,7 +43,7 @@ def problems(name):
     data = get_data(problem[2])
     
     if type(data['answer']) == list:
-        return render_template('multiple-choice.html', question=data['question'])
+        return render_template('multiple-choice.html', question=data['question'], answer=data['answer'], is_calc=data['is_calc'])
     else: return "i am bad at coding gimme a sec"
     
     
