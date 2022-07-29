@@ -2,27 +2,109 @@
 
 {% block body %}
 
+<!-- the problem display-->
 <div class="problem-div" id="problem-div">
 </div>
 
-
-<div id="answers-div">  
-    <ol id="answers-list">
+<!-- the place where the multiple choice answers are located-->
+<div id="answers-div" class="answer-div">  
+    <form id="ans-form">
         
-    </ol>
+    </form>
+    <div style="display: flex">
+        <button id="sub">Submit</button>
+        <p id="correctIncorrect"></p>
+    </div>
+    
 </div>
-
-
-<style>
-    .problem-div {
-        margin: 20px;
-        padding: 10px;
-    }
-</style>
 
 <script>
     const problemDiv = document.getElementById('problem-div')
     problemDiv.innerHTML = `{{question | safe}}`
+
+    const answers = {{ answer | safe}} // array
+    console.log(answers)
+
+    const desiredAnswer = answers[1]
+    
+    const multipleChoiceButtons = []
+
+    var count = 0
+    for (const el of answers[0]) {
+        const rad = document.createElement('input')
+        rad.type='radio'
+        rad.value=el
+        rad.id="choice" + count
+        rad.name="answers"
+        const label = document.createElement('label')
+        label.htmlFor="choice" + count
+        label.innerText=el
+        multipleChoiceButtons.push(rad)
+
+        const d = document.createElement('div')
+
+        d.append(rad)
+        d.append(label)
+
+        document.getElementById('ans-form').append(d)
+        count++
+    }
+
+    var notAnswered = true
+    document.getElementById('sub').onclick = function() {
+        var count=0
+        for (const el of multipleChoiceButtons) {
+            if (el.checked  && notAnswered) {
+                selectedIndex = count
+                if (selectedIndex==desiredAnswer) {
+                    console.log('correct')
+                    document.getElementById('correctIncorrect').innerText = 'Correct'
+                    notAnswered = false
+                }
+                else {
+                    console.log('incorrect')
+                    document.getElementById('correctIncorrect').innerText = 'Incorrect'
+                    notAnswered = false
+                }
+            }
+            count++
+        }
+    }
 </script>
+
+<style>
+    table, th, td {
+        border: 1px solid;
+        padding: 4px
+    }
+
+    .problem-div {
+        margin: 20px;
+        padding: 10px;
+    }
+
+    #ans-form div {
+        display: block; 
+        padding: 2px
+    }
+
+    #ans-form div input {
+        margin-right: 5px
+    }
+
+    .answer-div {
+        margin: 25px
+    }
+
+    #sub {
+        padding: 5px;
+        border-radius: 5px;
+        background-color: #2A2B2E;
+        color: white; 
+        font-size: 16px;
+        margin-top: 10px;
+    }
+    
+</style>
 
 {% endblock %}

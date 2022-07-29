@@ -7,4 +7,4 @@ legit just any other flask app. `FLASK_APP` should be set to main thats it.
 
 when you want to use it to practice at this stage, kinda don't
 
-nothing fancy here rn just wait its going to be mad cool
+nothing fancy here rn just wait its going to be mad cool 
