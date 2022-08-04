@@ -1,1 +1,8 @@
+
+# files
 problems.db
+
+# folders
+/config
+/__pycache__
+/env
