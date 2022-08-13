@@ -2,21 +2,6 @@
 from flask import Flask, render_template
 import sqlite3
 import random
-import pyrebase
-
-## FIREBASE STUFF ##
-config = {
-    "apiKey": "AIzaSyDpcvFe3H4uYwyHHwz1WEdP5GxWYUFCXPo",
-    "authDomain": "math-practice-6b4cb.firebaseapp.com",
-    "projectId": "math-practice-6b4cb",
-    "storageBucket": "math-practice-6b4cb.appspot.com",
-    "messagingSenderId": "626197126343",
-    "appId": "1:626197126343:web:3c8f36ca9373083c1f72e2",
-    "measurementId": "G-5FD202CJ27"
-}
-
-firebase = pyrebase.initialize_app(config)  
-auth = firebase.auth()
 
 app = Flask(__name__)
 
@@ -25,7 +10,7 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-# overarching topics page
+# overarching topics age
 @app.route("/topics")
 def topics():
     return render_template("topics.html")
@@ -57,11 +42,18 @@ def problems(name):
     data = get_data(problem[2])
     
     if type(data['answer']) == list:
-        return render_template('multiple-choice.html', question=data['question'], answer=data['answer'], is_calc=data['is_calc'])
+        return render_template('question/multiple-choice.html', question=data['question'], answer=data['answer'], is_calc=data['is_calc'])
     else: 
-        return render_template('text-question.html', question=data['question'], answer=data['answer'], is_calc=data['is_calc'])
+        return render_template('question/text-question.html', question=data['question'], answer=data['answer'], is_calc=data['is_calc'])
+
+@app.route('/login')
+def login():
+    return render_template("login.html")
     
-    
+@app.route('/cumcumcumcum')
+def cumcumcum():
+    return render_template('question/question.html')
+
 ########################################
 ####        HELPER FUNCTIONS        ####
 ########################################
@@ -69,3 +61,4 @@ def get_data(code):
     loc = {}
     exec(code, globals(), loc)
     return loc['data']
+

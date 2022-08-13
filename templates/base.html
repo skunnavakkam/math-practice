@@ -2,157 +2,171 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <title>Question</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>{{title}}</title>
 
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
 
-    </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
 
-    <body>
-        <nav class="navbar">
-
-            <div class="logo"><a href="/" style="color:white; font-weight:bold; text-decoration:none">Math Practice</a></div>
-            <ul class="nav-list">
-                <li class="nav-item"><a href="./about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="./topics" class="nav-link">Topics</a></li>
-                <li class="nav-item"><a href="./community" class="nav-link">Community</a></li>
-                <li class="nav-item"><button id="sign-up">Sign Up/Log In</button></li>
-            </ul>
-        </nav>
-
-        {% block body %}
-        
-        {% endblock %}
-         
+<body>
 
 
-    </body>
-
-    <style>
-        .nav-link {
-            text-decoration: none;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            color: white;
-        }
-
-        .nav-item {
-            list-style: none;
-            display: inline;
-            float: left;
-            display: block;
-            margin: 20px;
-            justify-content: flex-end;
-        }
-
-        .nav-list {
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar {
-            background-color: #2A2B2E;
-            width: 100%;
-            display: flex;
-            justify-content:  space-between;
-            align-items: center;
-        }
-
-        * {
-            padding:0px;
-            margin:0px;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-
-        .logo {
-            font-family: serif;
-            color: white;
-            font-weight: 400;
-            margin: 20px;
-            font-size: large;
-        }
-
-        .nav-crumbs{
-            border-bottom: 1px solid black;  
-            display:flex;
-            margin: 20px;
-            margin-top: 5px;
-            padding:15px
-        }
-
-        .crumbs ol {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        
-        .crumb {
-            display: inline-block;
-        }
-        
-        .crumb a::after {
-            display: inline-block;
-            color: #000;
-            content: '>';
-            font-size: 80%;
-            font-weight: bold;
-            padding: 0 0px;
-            margin-left: 4px;
-        }
-
-        .footer {
-            display: flex;
-            width: 100%;
-            position: absolute;
-            bottom: 0px;
-            justify-content: space-evenly;
-            border-top: 1px solid lightgrey;
-
-        }
-
-        .footer-element {
-            color: darkgrey;
-            font-weight: 200;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-
-        #sign-up {
-            background-color: #4BA3C3;
-            color: black;
-            border: none;
-            padding: 5px;
-            border-radius: 3px;
-        }
-    </style>
 
 
     <script type="module">
 
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-analytics.js";
+
         const firebaseConfig = {
-          apiKey: "AIzaSyDpcvFe3H4uYwyHHwz1WEdP5GxWYUFCXPo",
-          authDomain: "math-practice-6b4cb.firebaseapp.com",
-          projectId: "math-practice-6b4cb",
-          storageBucket: "math-practice-6b4cb.appspot.com",
-          messagingSenderId: "626197126343",
-          appId: "1:626197126343:web:3c8f36ca9373083c1f72e2",
-          measurementId: "G-5FD202CJ27"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
+            apiKey: "AIzaSyDpcvFe3H4uYwyHHwz1WEdP5GxWYUFCXPo",
+            authDomain: "math-practice-6b4cb.firebaseapp.com",
+            projectId: "math-practice-6b4cb",
+            storageBucket: "math-practice-6b4cb.appspot.com",
+            messagingSenderId: "626197126343",
+            appId: "1:626197126343:web:3c8f36ca9373083c1f72e2",
+            measurementId: "G-5FD202CJ27"
+            };
+
+            // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+
+        var provider = new firebase.auth.GoogleAuthProvider();
         
-        console.log('firebase is running')
-      </script>
+        document.getElementById("login").onclick = function() {
+            firebase.auth().signInWithRedirect(provider);
+        }
+
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                document.getElementById("login").hidden=true
+                document.getElementById("login").style.display="none"
+                console.log("world")
+                const photo = user.photoURL
+
+                document.getElementById('profile-image').src = photo
+            }
+            else {
+                console.log("hello")
+            }
+        }
+        )
+
+        firebase.auth()
+        .getRedirectResult()
+        .then((result) => {
+            if (result.credential) {
+            /** @type {firebase.auth.OAuthCredential} */
+            var credential = result.credential;
+
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = credential.accessToken;
+            // ...
+            }
+            // The signed-in user info.
+            var user = result.user;
+
+
+            console.log(user)
+        }).catch((error) => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+        });
+
+    </script>
+
+    <nav class="navbar" role="navigation" aria-label="main navigation" style="border-bottom: 1px solid gainsboro;">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              Classes
+            </a>
+      
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                About
+              </a>
+      
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  Our Mission
+                </a>
+                <a class="navbar-item">
+                  Team
+                </a>
+                <a class="navbar-item">
+                  Contact
+                </a>
+                <a class="navbar-item">
+                    Contribute
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item">
+                  Report an issue
+                </a>
+              </div>
+            </div>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <button id="login" class="button is-primary">
+                  <strong>Sign up/Log In</strong>
+                </button>
+              </div>
+            </div>
+            <div class="navbar-item" style="margin: 0px; padding: 0px">
+                <img id="profile-image" style="margin-right: 10px; padding: 0px; border-radius: 50%">
+            </div>
+          </div>
+        </div>
+      </nav>
+
+
+    {% block body %}
+    
+    {% endblock %}
+        
+</body>
+
+<script>
+    {% block script %}
+
+
+    {% endblock %}
+</script>
+
+<style>
+    {% block style %}
+
+    {% endblock %}
+</style>
 </html>

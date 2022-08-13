@@ -1,8 +1,12 @@
 
 # files
 problems.db
+/static/package-lock.json
+/static/package.json
 
 # folders
 /config
 /__pycache__
 /env
+/temp
+/static/node_modules
