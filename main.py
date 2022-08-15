@@ -54,6 +54,12 @@ def login():
 def cumcumcum():
     return render_template('question/question.html')
 
+@app.route('/demo/<name>')
+def demo(name):
+    with open(f'tests/{name}.py') as f:
+        f.
+    
+
 ########################################
 ####        HELPER FUNCTIONS        ####
 ########################################

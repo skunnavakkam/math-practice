@@ -72,3 +72,7 @@ There should be an output `data` object from the problem code that returns:
 }
 ```
 
+## Development
+
+To access any of the questions, one would need to have access to the firebase console, which I can't give to just everyone. In order to try to rectify the matter, there is a directory `tests` which contains the code for generating a single problem. Going to the url localhost:5000/demo should open this
+
