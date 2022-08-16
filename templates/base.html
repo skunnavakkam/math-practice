@@ -23,80 +23,6 @@
 
     <script type="module">
 
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-analytics.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDpcvFe3H4uYwyHHwz1WEdP5GxWYUFCXPo",
-            authDomain: "math-practice-6b4cb.firebaseapp.com",
-            projectId: "math-practice-6b4cb",
-            storageBucket: "math-practice-6b4cb.appspot.com",
-            messagingSenderId: "626197126343",
-            appId: "1:626197126343:web:3c8f36ca9373083c1f72e2",
-            measurementId: "G-5FD202CJ27"
-            };
-
-            // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-
-        var provider = new firebase.auth.GoogleAuthProvider();
-        
-        document.getElementById("login").onclick = function() {
-            firebase.auth().signInWithRedirect(provider);
-        }
-
-        
-        // Hiding the profile photo and the login button, to prevent any weird flickering for the user
-        document.getElementById("login").hidden=true
-        document.getElementById("login").style.display="none"
-
-        document.getElementById("profile-image").hidden=true
-
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                // user is logged in
-                document.getElementById("profile-image").hidden = false
-                document.getElementById("profile-dropdown").hidden=false
-
-                console.log("world")
-                const photo = user.photoURL
-
-                document.getElementById('profile-image').src = photo
-            }
-            else {
-                // user is NOT logged in
-                document.getElementById("login").hidden=false
-                document.getElementById("login").style.display="block"
-            }
-        }
-        )
-
-        firebase.auth()
-        .getRedirectResult()
-        .then((result) => {
-            if (result.credential) {
-            /** @type {firebase.auth.OAuthCredential} */
-            var credential = result.credential;
-
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = credential.accessToken;
-            // ...
-            }
-            // The signed-in user info.
-            var user = result.user;
-
-
-            console.log(user)
-        }).catch((error) => {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
-        });
 
     </script>
 
@@ -154,9 +80,12 @@
               </div>
             </div>
             
+
+            <!-- Profile Button-->
             <div class="navbar-item has-dropdown is-hoverable" id="profile-dropdown" hidden>
                 <a class="navbar-link"><img id="profile-image" style="margin-right: 10px; padding: 0px; border-radius: 50%"></a>
 
+                <!-- List of actions: Dashboard, Profile, Log Out -->
                 <div class="navbar-dropdown">
                     <a></a>
                     <hr class="navbar-divider">

@@ -57,7 +57,7 @@ def cumcumcum():
 @app.route('/demo/<name>')
 def demo(name):
     with open(f'tests/{name}.py') as f:
-        f.
+        
     
 
 ########################################
