@@ -2,8 +2,10 @@
 from flask import Flask, render_template
 import sqlite3
 import random
+import firebase_admin
+from firebase_admin import credentials, auth, database, firestore
 
-app = Flask(__name__)
+app =firebase_admin.initialize_app()
 
 # home, the pretty shit
 @app.route("/")
@@ -54,10 +56,6 @@ def login():
 def cumcumcum():
     return render_template('question/question.html')
 
-@app.route('/demo/<name>')
-def demo(name):
-    with open(f'tests/{name}.py') as f:
-        
     
 
 ########################################
@@ -67,4 +65,8 @@ def get_data(code):
     loc = {}
     exec(code, globals(), loc)
     return loc['data']
+
+def read_file(path):
+    with open(path) as f:
+        return f.read()
 

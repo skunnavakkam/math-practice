@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title>{{title}}</title>
+    <title>{% block title %} {% endblock %}</title>
 
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
@@ -29,7 +29,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation" style="border-bottom: 1px solid gainsboro;">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            <img src="{{url_for('static', filename='assets/logo.png')}}">
           </a>
       
           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
